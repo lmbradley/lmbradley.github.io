@@ -139,7 +139,7 @@ div {
 	/*left: 50%;
 	top: 35%;*/
 	color: gold;
-	font-size: 20px;
+	font-size: 48px;
 	/*width: 235px;
 	height: 185px;
 	border: 2px dashed gold;
@@ -242,7 +242,7 @@ div {
 	border: 1px solid #33312e;
 	font-weight: bold;
 	color: white;
-	font-size: 20px;
+	font-size: 48px;
 
 
 	display: inline-block;
@@ -707,7 +707,7 @@ select {
 #splash_title {
 	position: relative;
 	top: 20px;
-	font-size: 20px;
+	font-size: 48px;
 	left: 50%;
 	text-align: center;
 	-ms-transform: translateX(-50%) translateY(0%);
@@ -721,7 +721,8 @@ select {
 	position: relative;
 	left: 50%;
 	top: 50px;
-	max-width: 350px;;
+	max-width: 350px;
+	font-size: 48px;
 
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
