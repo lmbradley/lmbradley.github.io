@@ -93,7 +93,7 @@ $(window).on('load', function() {
 	    	//	$(this).empty();
 	    	} else {
 	    		$('#fileBox1').trigger('click');
-	    		$(".util").fadeOut("slow");
+	    		//$(".util").fadeOut("slow");
 	    	}
 	    });
 	    
@@ -102,7 +102,7 @@ $(window).on('load', function() {
 	    	//	$(this).empty();
 	    	} else {
 	    		$('#fileBox2').trigger('click');
-	    		$(".util").fadeOut("slow");
+	    		//$(".util").fadeOut("slow");
 	    	}
 	    });	
 	}
@@ -823,7 +823,7 @@ $(window).on('load', function() {
 	function sliderChanged() {
 		zoom = slider.noUiSlider.get();
 		zoomLevel[frame] = zoom;
-		$(".util").fadeOut("slow");
+		//$(".util").fadeOut("slow");
 		draw(list[frame].children[0], image, imageX, imageY);
 	}
 	
@@ -1115,9 +1115,9 @@ $(window).on('load', function() {
     		drawText();
     		console.log('test draw');
     	}, 500);
-    	timer = setTimeout(function() {
-    		$(".util").fadeOut("slow");
-    	}, 5000);
+    	//timer = setTimeout(function() {
+    	//	$(".util").fadeOut("slow");
+    	//}, 5000);
     	selectEnable();
     	ready = false;
     	onselectChange();
@@ -1138,9 +1138,9 @@ $(window).on('load', function() {
     	$("#download").fadeIn("slow");
 		//UPDATE: removing FB share.
     	//$("#FBShare").fadeIn("slow");
-    	timer = setTimeout(function() {
-    		$(".util").fadeOut("slow");
-    	}, 5000);
+    	//timer = setTimeout(function() {
+    	//	$(".util").fadeOut("slow");
+    	//}, 5000);
     }
     
     //FACEBOOK
