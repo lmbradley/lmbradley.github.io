@@ -90,9 +90,8 @@ div {
 	/*min-height: 525px;
 	height: 90%;
 	max-height: 565px;*/
-	height: 100%;
-	max-height:565px;
-	
+	height: 50%;
+	min-height:400px;
 	/*-ms-transform: translateX(-50%) translateY(-50%);
   	-webkit-transform: translate(-50%,-50%);
   	-o-transform: translate(-50%, -50%);
@@ -175,7 +174,7 @@ div {
 .util div {
 	position: absolute;
 	left: 50%;
-	top: 26em;
+	top: 4em;
 	-ms-transform: translateX(-50%) translateY(0%);
   	-webkit-transform: translate(-50%,0%);
   	-o-transform: translate(-50%, 0%);
@@ -233,8 +232,6 @@ div {
     background: linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
 	width: 7em;
 	text-align: center;
-	margin: 0 auto;
-	margin-top: 4em;
 	padding: 6px 0 0;
 	border-radius: 5px;
 	cursor: pointer;
@@ -244,9 +241,17 @@ div {
 	color: white;
 	font-size: 48px;
 
-
-	display: inline-block;
     height: 1.7em;
+    
+    
+	position: absolute;
+	bottom: 1em;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+  	-webkit-transform: translate(-50%);
+  	-o-transform: translate(-50%);
+  	-mos-transform: translate(-50%);
+  	transform: translate(-50%);
 }
 
 #splash_button:hover {
@@ -258,27 +263,31 @@ div {
 
 
 #buttons {
+	font-size:60px;
 	width: 100%;
-	position: absolute;
-	bottom: 0;
-	height: 5.5em;
+	/*position: absolute;
+	bottom: 0;*/
+	height: 60px;
 }
 
+
 #buttons .button {
-	background: -webkit-linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42)); 
-    background: -o-linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42)); 
-    background: -moz-linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42));
-    background: linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42)); 
+	background: -webkit-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
+    background: -o-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
+    background: -moz-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211));
+    background: linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
 	width: 7em;
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 1.8em;
+	margin-top: 0em;
 	padding: 6px 0 0;
 	border-radius: 5px;
 	cursor: pointer;
 	line-height: 1.6em;
 	border: 1px solid #33312e;
 	font-weight: bold;
+	color: white;
+	font-size: 48px;
 
 
 	display: inline-block;
@@ -299,27 +308,6 @@ div {
 
 
 
-#buttons .button {
-	background: -webkit-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
-    background: -o-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
-    background: -moz-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211));
-    background: linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
-	width: 7em;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 2em;
-	padding: 6px 0 0;
-	border-radius: 5px;
-	cursor: pointer;
-	line-height: 1.6em;
-	border: 1px solid #33312e;
-	font-weight: bold;
-	color: white;
-
-
-	display: inline-block;
-    height: 1.7em;
-}
 
 
 
@@ -455,7 +443,7 @@ div {
 #load {
 	position: absolute;
 	left: 50%;
-	top: 25px;
+	top: 3em;
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%);
@@ -466,7 +454,7 @@ div {
 #download {
 	position: absolute;
 	left: 50%;
-	top: 25px;
+	top: 3em;
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%, -50%);
@@ -477,17 +465,37 @@ div {
 }
 
 #next {
+	position: absolute;
+	left: 50%;
+	top: 5em;
+	-ms-transform: translateX(-50%);
+  	-webkit-transform: translate(-50%);
+  	-o-transform: translate(-50%, -50%);
+  	-mos-transform: translate(-50%, -50%);
+  	transform: translate(-50%);
+/*
 	position: absolute;	
 	right: 80px;
 	top: 25px;
 	text-align: center;
+	*/
 }
 
 #previous {
 	position: absolute;
+	left: 50%;
+	top: 1em;
+	-ms-transform: translateX(-50%);
+  	-webkit-transform: translate(-50%);
+  	-o-transform: translate(-50%, -50%);
+  	-mos-transform: translate(-50%, -50%);
+  	transform: translate(-50%);
+/*
+	position: absolute;
 	left: 80px;
 	top: 25px;
 	text-align: center;
+	*/
 }
 
 #slider {
@@ -705,8 +713,10 @@ select {
 }
 
 #splash_title {
+	box-sizing: border-box;
+	padding: 20px 0;
 	position: relative;
-	top: 20px;
+	height: 100%;
 	font-size: 48px;
 	left: 50%;
 	text-align: center;
@@ -729,10 +739,6 @@ select {
   	-o-transform: translate(-50%);
   	-mos-transform: translate(-50%);
   	transform: translate(-50%);
-}
-
-#splash_button {
-	margin-bottom: 15px;
 }
 
 #splash_images {

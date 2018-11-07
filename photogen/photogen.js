@@ -372,9 +372,9 @@ $(window).on('load', function() {
 		var img = new Image();
 		img.onload = function() {
 			image = img;
-			height = $('#list'+num).height();
+			//height = $('#list'+num).height();
         	width = $('#list'+num).width();
-			
+			height = Math.max(400, window.innerHeight/2);
         	heightScale = 1;
         	widthScale = 1;
         	
