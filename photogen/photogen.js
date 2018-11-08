@@ -491,7 +491,7 @@ $(window).on('load', function() {
 			if(isDraggingImage) {
 				if(time) {
 					time = 0;
-					$("#drag").fadeOut("slow");
+					//$("#drag").fadeOut("slow");
 					var mouseX = parseInt(e.clientX - offsetX);
 					var mouseY = parseInt(e.clientY - offsetY);
 					var moveX = mouseX - startX;
@@ -564,7 +564,7 @@ $(window).on('load', function() {
 	        }
 
 			if(isDraggingImage) {
-				$("#drag").fadeOut("slow");
+				//$("#drag").fadeOut("slow");
 				var mouseX = parseInt(e.touches[0].pageX - offsetX);
 				var mouseY = parseInt(e.touches[0].pageY - offsetY);
 				var moveX = mouseX - startX;
@@ -952,6 +952,7 @@ $(window).on('load', function() {
     		$('#fileBox'+(frame+1)).trigger('click');
     	});
     	
+    	/*
     	$("#drag").click(function() {
     		$("#drag").fadeOut("fast");
     	});
@@ -962,7 +963,7 @@ $(window).on('load', function() {
   
     	$("#thanks").click(function() {
     		$("#thanks").fadeOut("fast");
-    	}); 
+    	}); */
     	
     	$("#FBShare").click(function() {
 			// We're updating to the latest sharing API for Facebook, so we no longer need a separate window to share.
