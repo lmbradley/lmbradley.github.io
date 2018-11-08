@@ -466,10 +466,10 @@ select {
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%, -50%);
   	-mos-transform: translate(-50%, -50%);
-  	transform: translate(-50%);
+  	transform: translate(-50%);*/
   	
   	display: none;
-  	*/
+  	
 }
 
 #next {
@@ -514,6 +514,7 @@ select {
 	right: 10px;*/
 	background-color: grey;
 	background: grey;
+	display: none;
 }
 
 #slider .noUi-connect {

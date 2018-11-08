@@ -278,7 +278,9 @@ $(window).on('load', function() {
 	                var num = that.getAttribute('id').slice(-1);
 	                //resize image to maintain aspect ratio
 					fullSize[num] = file;
-					imageHandler(bin, num);
+					$("#clickdrag").fadeOut("slow");
+					$("#load").fadeOut("slow");
+					window.setTimeout(imageHandler, 600, bin, num);
 //					}
 	            }.bindToEventHandler(file));
 				} else {
@@ -435,7 +437,6 @@ $(window).on('load', function() {
 			//$("#slider").slider("enable");
 			
 			$("#slider").fadeIn("slow");
-			$("#clickdrag").fadeOut("slow");
 			$("#drag").fadeIn("slow");
 		
 			ready = true; //can continue to next slide
@@ -907,10 +908,12 @@ $(window).on('load', function() {
 				//UPDATE: hack for next button to work on the upload page.  We don't change frame (since for whatever reason both upload
 				//and scale dialogs are frame 2) but just update current frame.
 				if ($("#clickdrag").is(":visible")) {
-					$("#slider").fadeIn("slow");
 					$("#clickdrag").fadeOut("slow");
-					$("#drag").fadeIn("slow");
-					disableCanvas = false;
+					window.setTimeout(function() {
+						$("#slider").fadeIn("slow");
+						$("#drag").fadeIn("slow");
+						disableCanvas = false;
+					},600);
 					return;
 				}
     			clearTimeout(timer);
@@ -925,10 +928,12 @@ $(window).on('load', function() {
     					saveCanvas.getContext('2d').drawImage(saveImage, Math.floor((oldCanvas.width-cWidth)/2), 0, cWidth, cHeight, 0, 0, cWidth, cHeight);
     					saved[frame] = saveCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     					if(frame==0) {
+    						resetFrame();
     						frameTwo();
     					} else if(frame==1) {
     						$("#load").fadeOut("slow");
-    						frameThree();
+    						resetFrame();
+    						window.setTimeout(frameThree, 600);
     					}
     				};
     				saveImage.src = oldCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
@@ -936,7 +941,8 @@ $(window).on('load', function() {
     				if(frame==2) {
     					$("#selection").fadeOut("slow");
     					$("#next").fadeOut("slow");
-    					frameFour();
+    					resetFrame();
+    					window.setTimeout(frameFour, 600);
     				} else {
     					//frame5?
     				}
@@ -1005,9 +1011,11 @@ $(window).on('load', function() {
 				//Going back to upload page, so we fade slider and stop user from moving the image.
 				$("#slider").fadeOut("slow");
 				disableCanvas = true;
-    			frameTwo();
+				resetFrame();
+    			window.setTimeout(frameTwo, 600);
     		} else if(frame==3) {
-    			frameThree();
+    			resetFrame();
+    			window.setTimeout(frameThree, 600);
     		}
     	});
     	
@@ -1054,10 +1062,9 @@ $(window).on('load', function() {
     
     function resetFrame() {
     	$(".util").fadeOut("slow");
-		//We can't just do this since that makes some of the buttons do both a fade-out and a fade-in.
-    	//$("#previous").fadeOut("slow");
-    	//$("#next").fadeOut("slow");
-    	//$("#load").fadeOut("slow");
+    	$("#previous").fadeOut("slow");
+    	$("#next").fadeOut("slow");
+    	$("#load").fadeOut("slow");
     	$(".textInput").fadeOut("slow");
     	
     	$("#frameone").fadeOut("slow");
@@ -1066,6 +1073,7 @@ $(window).on('load', function() {
     	$("#framefour").fadeOut("slow");
     	
     	$("#download").fadeOut("slow");
+ 		$("#slider").fadeOut("slow");
  
     	$("#FBShare").fadeOut("slow");
     	$(".fb_share").fadeOut("slow");
@@ -1077,7 +1085,7 @@ $(window).on('load', function() {
     	output = "";
     	textoutput = "";
     		
-    	resetFrame();
+    	//resetFrame();
     	frame = 1;
     	//setClickDragMessage("Drag/Click here to load a photo of you supporting the U.S. Army.");
     	//setClickDragMessage("The U.S. Army Reserve allows individuals to make a difference in the world as they serve their country part-time, pursue their passions and aspirations while also remaining close to home. This meme generator is an easy way for you to share your support of U.S. Army Reserve Soldiers. The first step is to upload a photo of yourself in uniform or showing your support of Soldiers.");
@@ -1086,7 +1094,7 @@ $(window).on('load', function() {
     	//$("#slider").fadeIn("fast");
     	$("#frametwo").fadeIn("slow");
     	$("#previous").fadeOut("slow");
-		$("#slider").fadeOut("slow");
+		//$("#slider").fadeOut("slow");
     	$("#load").fadeIn("slow");
     	
     	selectDisable();
@@ -1103,10 +1111,10 @@ $(window).on('load', function() {
     }
     
     function frameThree() {
-    	resetFrame();
+    	//resetFrame();
     	//text
     	frame = 2;
-    	$("#slider").fadeOut(0);
+    	//$("#slider").fadeOut(0);
     	createFrameThree();
     	$("#framethree").fadeIn("slow");
     	$("#previous").fadeIn("slow");
@@ -1127,7 +1135,7 @@ $(window).on('load', function() {
     }
     
     function frameFour() {
-    	resetFrame();
+    	//resetFrame();
     	selectDisable();
     	//output/download/share
     	$("#framefour").fadeIn("slow");
