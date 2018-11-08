@@ -129,7 +129,7 @@
 		<div id="popuplist">
 
 
-			<div id="buttons">
+			
 			
 			<div class="box">
 				
@@ -179,6 +179,7 @@
 				</div>
 			
 			</div>
+			<div id="buttons">
 				<div id="clickdrag" class="util">
 					<div><b>STEP ONE:</b> UPLOAD PHOTO</div>
 				</div>
@@ -191,9 +192,7 @@
 				<div id="thanks" class="util">
 					<div><b>STEP FOUR:</b> Save your photo and share with your friends using the hashtag #ArmyReserveChallenge.</div>
 				</div>
-				<div id="slider_wrapper" style="position: absolute; width: 100%; height: 18px;">
-					<div id="slider"></div>
-				</div>
+				<div id="slider"></div>
 				<!--<div class="textInput t1"><div class="white">Text: </div><input type="text" maxlength="35" id="text1" /></div>-->
 				<!-- <div class="textInput t2"><div class="white">Text2: </div><input type="text" maxlength="18" id="text2" /></div>-->
 				<!--<div class="textInput t2"><div class="white">Size:</div>
@@ -223,13 +222,11 @@
 						<option value="right">Right</option>
 					</select>
 				</div>
-				<div id="button_wrapper">
-					<div id="previous"><div class="center button">PREVIOUS</div></div>
-					<div id="load"><div class="center button">LOAD</div></div>
-					<div id="download"><div class="center button">SAVE</div></div>
-					<div id="next"><div class="center button">NEXT</div></div>
-					<div id="FBShare"><div class="center button">SHARE</div></div>
-				</div>
+				
+				<div id="previous"><div class="button">PREVIOUS</div></div>
+				<div id="load"><div class="button">LOAD</div></div>
+				<div id="download"><div class="button">SAVE</div></div>
+				<div id="next"><div class="button">NEXT</div></div>
 			</div>
 			
 		</div>
@@ -246,201 +243,6 @@
     	
         </div><!--/page_content-->
     
-
-
-
-
-
-
-
-
-
-
-
- 	
-
- 
-
- 	
-
-  
-
-<script type="text/javascript">
-function getQueryParameter ( parameterName ) {
-    try {
-      var queryString = window.top.location.search.substring(1);
-      var parameterName = parameterName + "=";
-      if ( queryString.length > 0 ) {
-        begin = queryString.indexOf ( parameterName );
-        if ( begin != -1 ) {
-          begin += parameterName.length;
-          end = queryString.indexOf ( "&" , begin );
-            if ( end == -1 ) {
-            end = queryString.length
-          }
-          return unescape ( queryString.substring ( begin, end ) );
-        }
-      }
-    } catch (err) { // IE throwing permission deined errors for iframe code 
-    }
-      return "null";
-      
-}
-
-function trim(stringToTrim) {
-    return stringToTrim.replace(/^\s+|\s+$/g,"");
-}
-
-function getCookie(c_name)
-{
-if (document.cookie.length>0)
-  {
-  c_start=document.cookie.indexOf(c_name + "=");
-  if (c_start!=-1)
-    {
-    c_start=c_start + c_name.length+1;
-    c_end=document.cookie.indexOf(";",c_start);
-    if (c_end==-1) c_end=document.cookie.length;
-    return unescape(document.cookie.substring(c_start,c_end));
-    }
-  }
-return "";
-}
-
-
-var r_iom = "";
-var r_sbc = "";
-var r_referrer = document.referrer != null && document.referrer.indexOf("goarmy.com")>=0?"":document.referrer;
-var r_zipCode = "";
-var r_loggedin = "Not Logged In";
-
-if ( getQueryParameter ( "iom" ) != "null") {
-   r_iom = getQueryParameter ( "iom" );
-
-   if (!trim(r_iom) == "" ) {
-      if (r_iom.indexOf("-") >= 0) {
-         r_sbc = r_iom.split("-")[0];
-      } else if (trim(r_iom).length == 4) {
-         r_sbc = trim(r_iom);
-      }
-   }
-} else {
-
-   if ( getCookie('iom') != null && getCookie('iom') != "" ) {
-      r_iom = getCookie('iom');
-   }
-
-   if ( getCookie('sbc') != null && getCookie('sbc') != "" ) {
-      r_sbc = getCookie('sbc');
-   }
-}
-
-if ( getCookie('zipCode') != null && getCookie('zipCode') != "" ) {
-   r_zipCode = getCookie('zipCode');
-}
-
-if ( getCookie('iPlanetDirectoryPro') != null && getCookie('iPlanetDirectoryPro') != "" ) {
-   r_loggedin = "Logged In";
-}
-
-
-if ( getCookie('referer') == "" ) {
-   var referer = document.referrer
-   if (!referer) {
-      referer="NO+REFERER"
-   } else if (referer.length>60) {
-      referer = referer.substr(0,60)
-   }
-   setCookie('referer', referer, null, '/');
-}
-
-
-var r_sc_mc = getCookie('sc_mc') || "";
-r_sc_mc = r_sc_mc.replace(/%3A/g, ":");
-</script>
-
-<script type="text/javascript">
-	var mobilecheck = "";
-	(function() {
-
-		  var deviceAgent = navigator.userAgent.toLowerCase();
-
-		  var isTouchDevice = ('ontouchstart' in document.documentElement) ||
-		  (deviceAgent.match(/(iphone|ipod|ipad)/) ||
-		  deviceAgent.match(/(android)/)  || 
-		  deviceAgent.match(/(iemobile)/) || 
-		  deviceAgent.match(/iphone/i) || 
-		  deviceAgent.match(/ipad/i) || 
-		  deviceAgent.match(/ipod/i) || 
-		  deviceAgent.match(/blackberry/i) || 
-		  deviceAgent.match(/bada/i));
-
-		  if (isTouchDevice) {
-		          mobilecheck = "true";
-		  } else {
-		          mobilecheck= "";
-		  }
-	})();
-	
-	var activation_type = "";
-	var page_language = "";
-	var is_mobile = "";
-	// if not under army-para-padres, read 
-	// the jcr:language property authored in page properties
-	if (!page_language){
-		page_language = "English";
-	}
-	
-	if (!is_mobile){
-		is_mobile = mobilecheck;
-	}
-	
-	
-	if (activation_type){
-		var utag_data = { "activation_type":"",
-				"consumer_is_logged_in": r_loggedin,
-				"page_breadcrumb":"Home>Army Reserve>Reserve PhotoGen",
-				"page_name":"",
-				"page_section":"reserve",
-				"page_subsection":"photogen",
-				"page_type":"landing",
-				"is_mobile": is_mobile,
-				"page_language" : page_language
-				}	
-	}
-	else {
-		var utag_data = { 
-				"consumer_is_logged_in": r_loggedin,
-				"page_breadcrumb":"Home>Army Reserve>Reserve PhotoGen",
-				"page_name":"",
-				"page_section":"reserve",
-				"page_subsection":"photogen",
-				"page_type":"landing",
-				"is_mobile": is_mobile,
-				"page_language" : page_language
-				}
-	}
-</script>
-
-
-
-
-
-
-<!-- Google Analytics code -->
-<script type="text/javascript" language="javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-39617427-1', {
-        'cookieDomain': 'goarmy.com',
-        'cookieExpires': 15552000  // Time in seconds.
-    } );
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview');
-</script>
-<!-- End Google Analytics code -->
 
 
 
