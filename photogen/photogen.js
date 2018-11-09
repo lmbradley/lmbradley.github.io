@@ -599,10 +599,10 @@ $(window).on('load', function() {
 	        }
 			isDraggingImage = false;
     	}
-    	canvas.addEventListener('touchstart', handleTouchStart, true);
+    	/*canvas.addEventListener('touchstart', handleTouchStart, true);
     	canvas.addEventListener('touchend', handleTouchEnd, true);
     	canvas.addEventListener('touchmove', handleTouchMove, true);
-    	canvas.addEventListener('touchcancel', handleTouchCancel, true);
+    	canvas.addEventListener('touchcancel', handleTouchCancel, true);*/
    }
 	
 	function checkSupport() {
@@ -1207,7 +1207,7 @@ $(window).on('load', function() {
     		ctx.translate(img.height/2, img.width/2);
     		ctx.rotate(angle * Math.PI / 180);
     		ctx.translate(-1 * img.width/2, -1 * img.height/2);
-    		ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
+    		ctx.drawImage(img, 0, 0, img.width, img.height);
    	 		rotatedImg.src = rotate.toDataURL();
    	 		bins[1] = rotatedImg.src;
    	 	};
