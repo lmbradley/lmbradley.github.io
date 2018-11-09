@@ -500,8 +500,6 @@ $(window).on('load', function() {
 	        }
 			if(isDraggingImage) {
 				if(time) {
-				
-					console.log("test");
 					time = 0;
 					//$("#drag").fadeOut("slow");
 					var mouseX = parseInt(e.clientX - offsetX);
@@ -981,80 +979,10 @@ $(window).on('load', function() {
     	});
     	
     	$("#rotate_right").click(function() {
-    		/*var img  = new Image();
-    		var rotatedImg = new Image();
-    		rotatedImg.onload = function() {
-    			image = rotatedImg;
-    			var canvas = document.getElementById('upload');
-    			$(canvas).unbind("mouseenter").
-    					  unbind("mouseleave").
-    					  unbind("mousemove").
-    					  unbind("mouseup").
-    					  unbind("mousedown").
-    					  unbind("mouseout");
-    			$(canvas).unbind("touchstart").
-    					  unbind("touchend").
-    					  unbind("touchmove").
-    					  unbind("touchcancel");
-    			draw(canvas, image, imageX, imageY);
-    			canvasHandler(canvas, image, 2);
-    			refreshCanvas();
-    		};
-			img.onload = function() {
-    			var rotate = document.createElement("canvas");
-    			rotate.width = img.height;
-    			rotate.height = img.width;
-    			var ctx = rotate.getContext('2d');
-    			ctx.translate(img.height, 0);
-    			ctx.rotate(90 * Math.PI / 180);
-    			ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
-   	 			rotatedImg.src = rotate.toDataURL();
-   	 			bins[1] = rotatedImg.src;
-   	 			imageX = imageX + image.width/2 - rotatedImg.width/2;
-   	 			imageY = imageY + image.height/2 - rotatedImg.height/2;
-   	 		};
-    		img.src = bins[1];*/
     		rotateImage(90);
     	});
     	
     	$("#rotate_left").click(function() {
-    		/*var img  = new Image();
-    		var rotatedImg = new Image();
-    		rotatedImg.onload = function() {
-    			image = rotatedImg;
-    			/*var canvas = document.getElementById('upload');
-    			
-    			/*$(canvas).unbind("mouseenter").
-    					  unbind("mouseleave").
-    					  unbind("mousemove").
-    					  unbind("mouseup").
-    					  unbind("mousedown").
-    					  unbind("mouseout");
-    			$(canvas).unbind("touchstart").
-    					  unbind("touchend").
-    					  unbind("touchmove").
-    					  unbind("touchcancel");
-    			/*canvas.removeEventListener('touchstart');
-    			canvas.removeEventListener('touchend');
-    			canvas.removeEventListener('touchmove');
-    			canvas.removeEventListener('touchcancel');
-    			draw(canvas, image, imageX, imageY);
-    			canvasHandler(canvas, image, 2);
-    			refreshCanvas();
-    		};
-			img.onload = function() {
-    			var rotate = document.createElement("canvas");
-    			rotate.width = img.height;
-    			rotate.height = img.width;
-    			var ctx = rotate.getContext('2d');
-    			ctx.translate(0, img.width);
-    			ctx.rotate(-90 * Math.PI / 180);
-    			ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
-   	 			rotatedImg.src = rotate.toDataURL();
-   	 			bins[1] = rotatedImg.src;
-   	 		};
-    		img.src = bins[1];
-    		*/
     		rotateImage(-90);
     	});
     	
@@ -1171,11 +1099,7 @@ $(window).on('load', function() {
     			  unbind("mouseup").
     			  unbind("mousedown").
     			  unbind("mouseout");
-    	$(canvas).unbind("touchstart").
-    			  unbind("touchend").
-    			  unbind("touchmove").
-    			  unbind("touchcancel");
-    	//canvas.dispatchEvent(new Event("removeTouch"));
+    	canvas.dispatchEvent(new Event("removeTouch"));
     	canvasHandler(canvas, image, 2);
 		draw(canvas, image, imageX, imageY);
 	}
@@ -1185,32 +1109,21 @@ $(window).on('load', function() {
 		var img  = new Image();
     	var rotatedImg = new Image();
     	rotatedImg.onload = function() {
+    		// Reposition image
+   	 		imageX = imageX + img.width/2 - rotatedImg.width/2;
+   	 		imageY = imageY + img.height/2 - rotatedImg.height/2;
     		image = rotatedImg;
-    		/*var canvas = document.getElementById('upload');
-    		
-    		/*$(canvas).unbind("mouseenter").
-    				  unbind("mouseleave").
-    				  unbind("mousemove").
-    				  unbind("mouseup").
-    				  unbind("mousedown").
-    				  unbind("mouseout");
-    		$(canvas).unbind("touchstart").
-    				  unbind("touchend").
-    				  unbind("touchmove").
-    				  unbind("touchcancel");
-    		/*canvas.removeEventListener('touchstart');
-    		canvas.removeEventListener('touchend');
-    		canvas.removeEventListener('touchmove');
-    		canvas.removeEventListener('touchcancel');
-    		draw(canvas, image, imageX, imageY);
-    		canvasHandler(canvas, image, 2);*/
+    		// Done
     		refreshCanvas();
     	};
 		img.onload = function() {
+			// Create a new canvas to generate the rotated image, then pass it to upload.
+			// Transforming upload doesn't work as we'd have to re-align the drag/touch events too.
     		var rotate = document.createElement("canvas");
     		rotate.width = img.height;
     		rotate.height = img.width;
     		var ctx = rotate.getContext('2d');
+    		// Rotate by image center so we don't have to hard code the angles.
     		ctx.translate(img.height/2, img.width/2);
     		ctx.rotate(angle * Math.PI / 180);
     		ctx.translate(-1 * img.width/2, -1 * img.height/2);
