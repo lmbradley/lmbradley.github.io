@@ -975,7 +975,7 @@ $(window).on('load', function() {
     	});
     	
     	$("#rotate_right").click(function() {
-    		var img  = new Image();
+    		/*var img  = new Image();
     		var rotatedImg = new Image();
     		rotatedImg.onload = function() {
     			image = rotatedImg;
@@ -992,6 +992,7 @@ $(window).on('load', function() {
     					  unbind("touchcancel");
     			draw(canvas, image, imageX, imageY);
     			canvasHandler(canvas, image, 2);
+    			refreshCanvas();
     		};
 			img.onload = function() {
     			var rotate = document.createElement("canvas");
@@ -1003,18 +1004,21 @@ $(window).on('load', function() {
     			ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
    	 			rotatedImg.src = rotate.toDataURL();
    	 			bins[1] = rotatedImg.src;
+   	 			imageX = imageX + image.width/2 - rotatedImg.width/2;
+   	 			imageY = imageY + image.height/2 - rotatedImg.height/2;
    	 		};
-    		img.src = bins[1];
+    		img.src = bins[1];*/
+    		rotateImage(90);
     	});
     	
     	$("#rotate_left").click(function() {
-    		var img  = new Image();
+    		/*var img  = new Image();
     		var rotatedImg = new Image();
     		rotatedImg.onload = function() {
     			image = rotatedImg;
-    			var canvas = document.getElementById('upload');
+    			/*var canvas = document.getElementById('upload');
     			
-    			$(canvas).unbind("mouseenter").
+    			/*$(canvas).unbind("mouseenter").
     					  unbind("mouseleave").
     					  unbind("mousemove").
     					  unbind("mouseup").
@@ -1027,9 +1031,10 @@ $(window).on('load', function() {
     			/*canvas.removeEventListener('touchstart');
     			canvas.removeEventListener('touchend');
     			canvas.removeEventListener('touchmove');
-    			canvas.removeEventListener('touchcancel');*/
+    			canvas.removeEventListener('touchcancel');
     			draw(canvas, image, imageX, imageY);
     			canvasHandler(canvas, image, 2);
+    			refreshCanvas();
     		};
 			img.onload = function() {
     			var rotate = document.createElement("canvas");
@@ -1043,6 +1048,8 @@ $(window).on('load', function() {
    	 			bins[1] = rotatedImg.src;
    	 		};
     		img.src = bins[1];
+    		*/
+    		rotateImage(-90);
     	});
     	
     	/*
@@ -1136,8 +1143,11 @@ $(window).on('load', function() {
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
-			draw(canvas, image, imageX, imageY);
+			//draw(canvas, image, imageX, imageY);
+			refreshCanvas();
 		});
+		
+		
     
     	//setup complete; show frame one
 	     frameTwo();
@@ -1146,6 +1156,64 @@ $(window).on('load', function() {
 	    // $("#slider").fadeIn("fast");
     }
     
+    // Allows updating the image or the dimensions of the canvas.
+    function refreshCanvas() {
+		var canvas = document.getElementById('upload')
+    	$(canvas).unbind("mouseenter").
+    			  unbind("mouseleave").
+    			  unbind("mousemove").
+    			  unbind("mouseup").
+    			  unbind("mousedown").
+    			  unbind("mouseout");
+    	$(canvas).unbind("touchstart").
+    			  unbind("touchend").
+    			  unbind("touchmove").
+    			  unbind("touchcancel");
+    	canvasHandler(canvas, image, 2);
+		draw(canvas, image, imageX, imageY);
+	}
+	
+	// Rotates image.
+	function rotateImage(angle) {
+		var img  = new Image();
+    	var rotatedImg = new Image();
+    	rotatedImg.onload = function() {
+    		image = rotatedImg;
+    		/*var canvas = document.getElementById('upload');
+    		
+    		/*$(canvas).unbind("mouseenter").
+    				  unbind("mouseleave").
+    				  unbind("mousemove").
+    				  unbind("mouseup").
+    				  unbind("mousedown").
+    				  unbind("mouseout");
+    		$(canvas).unbind("touchstart").
+    				  unbind("touchend").
+    				  unbind("touchmove").
+    				  unbind("touchcancel");
+    		/*canvas.removeEventListener('touchstart');
+    		canvas.removeEventListener('touchend');
+    		canvas.removeEventListener('touchmove');
+    		canvas.removeEventListener('touchcancel');
+    		draw(canvas, image, imageX, imageY);
+    		canvasHandler(canvas, image, 2);*/
+    		refreshCanvas();
+    	};
+		img.onload = function() {
+    		var rotate = document.createElement("canvas");
+    		rotate.width = img.height;
+    		rotate.height = img.width;
+    		var ctx = rotate.getContext('2d');
+    		ctx.translate(img.height/2, img.width/2);
+    		ctx.rotate(angle * Math.PI / 180);
+    		ctx.translate(-1 * img.width/2, -1 * img.height/2);
+    		ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
+   	 		rotatedImg.src = rotate.toDataURL();
+   	 		bins[1] = rotatedImg.src;
+   	 	};
+    	img.src = bins[1];
+	}
+		
     function setClickDragMessage(message) {
     	$('#clickdrag div').text(message);
     }
