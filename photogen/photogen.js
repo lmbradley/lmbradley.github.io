@@ -599,10 +599,16 @@ $(window).on('load', function() {
 	        }
 			isDraggingImage = false;
     	}
-    	/*canvas.addEventListener('touchstart', handleTouchStart, true);
+    	canvas.addEventListener('touchstart', handleTouchStart, true);
     	canvas.addEventListener('touchend', handleTouchEnd, true);
     	canvas.addEventListener('touchmove', handleTouchMove, true);
-    	canvas.addEventListener('touchcancel', handleTouchCancel, true);*/
+    	canvas.addEventListener('touchcancel', handleTouchCancel, true);
+    	canvas.addEventListener('removeTouch', function() {
+    		this.removeEventListener('touchstart', handleTouchStart, true);
+    		this.removeEventListener('touchend', handleTouchEnd, true);
+    		this.removeEventListener('touchmove', handleTouchMove, true);
+    		this.removeEventListener('touchcancel', handleTouchCancel, true);
+    	}, true);
    }
 	
 	function checkSupport() {
@@ -1169,6 +1175,7 @@ $(window).on('load', function() {
     			  unbind("touchend").
     			  unbind("touchmove").
     			  unbind("touchcancel");
+    	canvas.dispatchEvent(new Event("removeTouch"));
     	canvasHandler(canvas, image, 2);
 		draw(canvas, image, imageX, imageY);
 	}
