@@ -298,6 +298,10 @@ select {
     height: 1.7em;
 }
 
+#buttons .rotate_button {
+	width: 2em !important;
+}
+
 #button_wrapper {
 	position: absolute;
 	width: 400px;
@@ -470,6 +474,10 @@ select {
   	
   	display: none;
   	
+}
+
+#rotate {
+	display: none;
 }
 
 #next {

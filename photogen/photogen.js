@@ -17,6 +17,11 @@ var changed, timer, image, resize;
 var cHeight = 400;
 var cWidth = 400;
 
+// We want this for a few different things, particularly fading out here doesn't work well on smartphones.
+var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
+var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
+console.log(fadeoutTime);
+
 var textTop = "Because";
 var textMiddle = "________";
 var textBottom = "________";
@@ -280,6 +285,7 @@ $(window).on('load', function() {
 					fullSize[num] = file;
 					$("#clickdrag").fadeOut("slow");
 					$("#load").fadeOut("slow");
+					$("#next").fadeOut("slow");
 					window.setTimeout(imageHandler, 600, bin, num);
 //					}
 	            }.bindToEventHandler(file));
@@ -437,6 +443,7 @@ $(window).on('load', function() {
 			//$("#slider").slider("enable");
 			
 			$("#slider").fadeIn("slow");
+			$("#rotate").fadeIn("slow");
 			$("#drag").fadeIn("slow");
 		
 			ready = true; //can continue to next slide
@@ -449,7 +456,9 @@ $(window).on('load', function() {
 		img.src = file;
 	}
 	
-	function canvasHandler(canvas, image, num) {
+	function canvasHandler(canvas, image3, num) {
+	//console.log(num);
+					//console.log(image);
 		disableCanvas = false;
 		var ctx = canvas.getContext('2d');
 		var offset = $(canvas).offset();
@@ -491,6 +500,8 @@ $(window).on('load', function() {
 	        }
 			if(isDraggingImage) {
 				if(time) {
+				
+					console.log("test");
 					time = 0;
 					//$("#drag").fadeOut("slow");
 					var mouseX = parseInt(e.clientX - offsetX);
@@ -501,7 +512,7 @@ $(window).on('load', function() {
 					//checks for moving image
 					if(image)
 					
-					draw(canvas, image, imageX+moveX*2, imageY+moveY*2, num);
+					draw(canvas, image, imageX+moveX*2, imageY+moveY*2);
 					imageX+=(moveX*2);
 					imageY+=(moveY*2);
 					startX = mouseX;
@@ -909,9 +920,14 @@ $(window).on('load', function() {
 				//and scale dialogs are frame 2) but just update current frame.
 				if ($("#clickdrag").is(":visible")) {
 					$("#clickdrag").fadeOut("slow");
+					$("#load").fadeOut("slow");
+					$("#next").fadeOut("slow");
 					window.setTimeout(function() {
 						$("#slider").fadeIn("slow");
+						$("#rotate").fadeIn("slow");
 						$("#drag").fadeIn("slow");
+						$("#load").fadeIn("slow");
+						$("#next").fadeIn("slow");
 						disableCanvas = false;
 					},600);
 					return;
@@ -956,6 +972,77 @@ $(window).on('load', function() {
     	
     	$("#clickdrag").click(function() {
     		$('#fileBox'+(frame+1)).trigger('click');
+    	});
+    	
+    	$("#rotate_right").click(function() {
+    		var img  = new Image();
+    		var rotatedImg = new Image();
+    		rotatedImg.onload = function() {
+    			image = rotatedImg;
+    			var canvas = document.getElementById('upload');
+    			$(canvas).unbind("mouseenter").
+    					  unbind("mouseleave").
+    					  unbind("mousemove").
+    					  unbind("mouseup").
+    					  unbind("mousedown").
+    					  unbind("mouseout");
+    			$(canvas).unbind("touchstart").
+    					  unbind("touchend").
+    					  unbind("touchmove").
+    					  unbind("touchcancel");
+    			draw(canvas, image, imageX, imageY);
+    			canvasHandler(canvas, image, 2);
+    		};
+			img.onload = function() {
+    			var rotate = document.createElement("canvas");
+    			rotate.width = img.height;
+    			rotate.height = img.width;
+    			var ctx = rotate.getContext('2d');
+    			ctx.translate(img.height, 0);
+    			ctx.rotate(90 * Math.PI / 180);
+    			ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
+   	 			rotatedImg.src = rotate.toDataURL();
+   	 			bins[1] = rotatedImg.src;
+   	 		};
+    		img.src = bins[1];
+    	});
+    	
+    	$("#rotate_left").click(function() {
+    		var img  = new Image();
+    		var rotatedImg = new Image();
+    		rotatedImg.onload = function() {
+    			image = rotatedImg;
+    			var canvas = document.getElementById('upload');
+    			
+    			$(canvas).unbind("mouseenter").
+    					  unbind("mouseleave").
+    					  unbind("mousemove").
+    					  unbind("mouseup").
+    					  unbind("mousedown").
+    					  unbind("mouseout");
+    			$(canvas).unbind("touchstart").
+    					  unbind("touchend").
+    					  unbind("touchmove").
+    					  unbind("touchcancel");
+    			/*canvas.removeEventListener('touchstart');
+    			canvas.removeEventListener('touchend');
+    			canvas.removeEventListener('touchmove');
+    			canvas.removeEventListener('touchcancel');*/
+    			draw(canvas, image, imageX, imageY);
+    			canvasHandler(canvas, image, 2);
+    		};
+			img.onload = function() {
+    			var rotate = document.createElement("canvas");
+    			rotate.width = img.height;
+    			rotate.height = img.width;
+    			var ctx = rotate.getContext('2d');
+    			ctx.translate(0, img.width);
+    			ctx.rotate(-90 * Math.PI / 180);
+    			ctx.drawImage(img, 0, 0, img.width/scale, img.height/scale);
+   	 			rotatedImg.src = rotate.toDataURL();
+   	 			bins[1] = rotatedImg.src;
+   	 		};
+    		img.src = bins[1];
     	});
     	
     	/*
@@ -1010,6 +1097,7 @@ $(window).on('load', function() {
     		if(frame==2) {
 				//Going back to upload page, so we fade slider and stop user from moving the image.
 				$("#slider").fadeOut("slow");
+				$("#rotate").fadeOut("slow");
 				disableCanvas = true;
 				resetFrame();
     			window.setTimeout(frameTwo, 600);
@@ -1042,6 +1130,14 @@ $(window).on('load', function() {
 //    			}, 500);
 //    		}
 //    	});
+		$(window).on('resize', function() {
+			width = $('#list2').width();
+			height = Math.max(400, window.innerHeight/2);
+			var canvas = document.getElementById('upload');
+			canvas.width = width;
+			canvas.height = height;
+			draw(canvas, image, imageX, imageY);
+		});
     
     	//setup complete; show frame one
 	     frameTwo();
@@ -1074,6 +1170,7 @@ $(window).on('load', function() {
     	
     	$("#download").fadeOut("slow");
  		$("#slider").fadeOut("slow");
+ 		$("#rotate").fadeOut("slow");
  
     	$("#FBShare").fadeOut("slow");
     	$(".fb_share").fadeOut("slow");
