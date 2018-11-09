@@ -1175,7 +1175,7 @@ $(window).on('load', function() {
     			  unbind("touchend").
     			  unbind("touchmove").
     			  unbind("touchcancel");
-    	canvas.dispatchEvent(new Event("removeTouch"));
+    	//canvas.dispatchEvent(new Event("removeTouch"));
     	canvasHandler(canvas, image, 2);
 		draw(canvas, image, imageX, imageY);
 	}
