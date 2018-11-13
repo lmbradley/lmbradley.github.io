@@ -17,7 +17,7 @@ var changed, timer, image, resize;
 var cHeight = 400;
 var cWidth = 400;
 
-// We want this for a few different things, particularly fading out here doesn't work well on smartphones.
+// We want this for a few different things.
 var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
 window.alert(window.innerHeight + " " + window.innerWidth);
 var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
@@ -1059,21 +1059,10 @@ $(window).on('load', function() {
     	$("select[name='textPosition']").on('change', function() {
     		drawText();
     	});
-    	//handle resizing
-    	//no dont do this
-    	//on mobile when onscreen keyboard opens it kills it
-    	//actually only do this when not on upload stage
-//    	$(window).on('resize', function() {
-//    		if(frame<2) {
-//    			clearTimeout(resize);
-//    			resize = setTimeout(function() {
-//    			location.reload();
-//    			}, 500);
-//    		}
-//    	});
+    	
 		$(window).on('resize', function() {
 			width = $('#list2').width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list'+num).height())
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list2').height());
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
