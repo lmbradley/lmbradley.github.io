@@ -562,12 +562,12 @@ select {
 
 #buttons div.t3 {
 	text-align: center;
-	width: 50%; 
+	width: 100%; 
 }
 
 #buttons div.t4 {
 	text-align: center;
-	width: 50%; 
+	width: 100%; 
 }
 
 #output {

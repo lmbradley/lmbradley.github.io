@@ -19,8 +19,8 @@ var cWidth = 400;
 
 // We want this for a few different things, particularly fading out here doesn't work well on smartphones.
 var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
+window.alert(window.innerHeight + " " + window.innerWidth);
 var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
-console.log(fadeoutTime);
 
 var textTop = "Because";
 var textMiddle = "________";
