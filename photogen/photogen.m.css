@@ -104,6 +104,7 @@ select {
   	background-color: rgb(59,59,59);
   	
   	border-bottom: 3px rgb(44,44,44) solid;
+  	margin-bottom: 0.2em;
 }
 
 #TextWhatAreYou {
@@ -142,6 +143,7 @@ select {
 	top: 35%;*/
 	color: gold;
 	font-size: 48px;
+	text-align: center;
 	/*width: 235px;
 	height: 185px;
 	border: 2px dashed gold;
@@ -176,13 +178,8 @@ select {
 }
 
 .util div {
-	left: 50%;
 	width: 75%;
-	/*-ms-transform: translateX(-50%) translateY(0%);
-  	-webkit-transform: translate(-50%,0%);
-  	-o-transform: translate(-50%, 0%);
-  	-mos-transform: translate(-50%, 0%);
-  	transform: translate(-50%,0%);*/
+	display: inline-block;
 	text-shadow: 0 0px 8px rgba(0, 0, 0, 0.6), 0 4px 20px rgba(0, 0, 0, 0.59);
 }
 
@@ -271,7 +268,7 @@ select {
 	width: 100%;
 	min-height: 50%;
 	position: absolute;
-	/*bottom: 0;*/
+	text-align: center;
 }
 
 
@@ -497,6 +494,7 @@ select {
 	top: 25px;
 	text-align: center;
 	*/
+	display: none;
 }
 
 #previous {
@@ -515,6 +513,7 @@ select {
 	top: 25px;
 	text-align: center;
 	*/
+	display: none;
 }
 
 #slider {
@@ -528,6 +527,10 @@ select {
 #slider .noUi-connect {
 	background-color: grey;
 	background: grey;
+}
+
+#buttons div {
+	margin-bottom: 0.2em;
 }
 
 #buttons div.t1 {

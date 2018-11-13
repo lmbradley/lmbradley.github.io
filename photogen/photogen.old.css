@@ -7,6 +7,7 @@ body {
 	-o-user-select:none;
 	user-select:none;
 	background-color: rgb(60,60,60);
+	
 }
 
 div {
@@ -76,9 +77,27 @@ div {
 }
 
 .box {
+	/*position: absolute;
+	left: 50%;*/
+	/*top: 50%;*/
+	
+	/*min-width: 400px;
+	width: 70%;
+	max-width: 1000px;*/
+	
 	width: 100%;
 	max-width: 1000px;
+	
+	/*min-height: 525px;
+	height: 90%;
+	max-height: 565px;*/
 	height: 100%;
+	
+	/*-ms-transform: translateX(-50%) translateY(-50%);
+  	-webkit-transform: translate(-50%,-50%);
+  	-o-transform: translate(-50%, -50%);
+  	-mos-transform: translate(-50%, -50%);
+  	transform: translate(-50%,-50%);*/
   	background-color: rgb(59,59,59);
   	
   	border-radius: 5px;
@@ -116,11 +135,11 @@ div {
 
 .util {
 	display: none;
+	position: absolute;
 	/*left: 50%;
 	top: 35%;*/
 	color: gold;
-	font-size: 1em;
-	text-align: center;
+	font-size: 20px;
 	/*width: 235px;
 	height: 185px;
 	border: 2px dashed gold;
@@ -134,8 +153,7 @@ div {
   	/*background-color: rgba(60,60,60,0.75);*/
   	
   	width: 100%;
-  	height: auto;
-  	/*height: 75%;*/
+  	height: 75%;
 }
 
 .util:hover {
@@ -155,8 +173,14 @@ div {
 }
 
 .util div {
-	width: 75%;
-	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 26em;
+	-ms-transform: translateX(-50%) translateY(0%);
+  	-webkit-transform: translate(-50%,0%);
+  	-o-transform: translate(-50%, 0%);
+  	-mos-transform: translate(-50%, 0%);
+  	transform: translate(-50%,0%);
 	text-shadow: 0 0px 8px rgba(0, 0, 0, 0.6), 0 4px 20px rgba(0, 0, 0, 0.59);
 }
 
@@ -217,17 +241,9 @@ div {
 	color: white;
 	font-size: 1em;
 
+
+	display: inline-block;
     height: 1.7em;
-    
-    
-	position: absolute;
-	bottom: 1em;
-	left: 50%;
-	-ms-transform: translateX(-50%);
-  	-webkit-transform: translate(-50%);
-  	-o-transform: translate(-50%);
-  	-mos-transform: translate(-50%);
-  	transform: translate(-50%);
 }
 
 #splash_button:hover {
@@ -242,35 +258,28 @@ div {
 	width: 100%;
 	position: absolute;
 	bottom: 0;
-	min-height: 9em;
-	text-align: center;
+	height: 5.5em;
 }
 
-
 #buttons .button {
-	background: -webkit-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
-    background: -o-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
-    background: -moz-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211));
-    background: linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
+	background: -webkit-linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42)); 
+    background: -o-linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42)); 
+    background: -moz-linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42));
+    background: linear-gradient(rgb(251,217,119) 50%, rgb(248,203,78) 25%, rgb(195,155,42)); 
 	width: 7em;
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 0em;
+	margin-top: 1.8em;
 	padding: 6px 0 0;
 	border-radius: 5px;
 	cursor: pointer;
 	line-height: 1.6em;
 	border: 1px solid #33312e;
 	font-weight: bold;
-	color: white;
 
 
 	display: inline-block;
     height: 1.7em;
-}
-
-#buttons .rotate_button {
-	width: 2em !important;
 }
 
 #button_wrapper {
@@ -287,6 +296,27 @@ div {
 
 
 
+#buttons .button {
+	background: -webkit-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
+    background: -o-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
+    background: -moz-linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211));
+    background: linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
+	width: 7em;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 2em;
+	padding: 6px 0 0;
+	border-radius: 5px;
+	cursor: pointer;
+	line-height: 1.6em;
+	border: 1px solid #33312e;
+	font-weight: bold;
+	color: white;
+
+
+	display: inline-block;
+    height: 1.7em;
+}
 
 
 
@@ -420,91 +450,55 @@ div {
 }
 
 #load {
-/*
 	position: absolute;
 	left: 50%;
-	top: 6em;
+	top: 25px;
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%);
   	-mos-transform: translate(-50%);
   	transform: translate(-50%);
-  	*/
 }
 
 #download {
-/*
 	position: absolute;
 	left: 50%;
-	top: 6em;
-	-ms-transform: translateX(-50%);
-  	-webkit-transform: translate(-50%);
-  	-o-transform: translate(-50%, -50%);
-  	-mos-transform: translate(-50%, -50%);
-  	transform: translate(-50%);*/
-  	
-  	display: none;
-  	
-}
-
-#rotate {
-	display: none;
-}
-
-#next {
-/*
-	position: absolute;
-	left: 50%;
-	top: 8em;
+	top: 25px;
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%, -50%);
   	-mos-transform: translate(-50%, -50%);
   	transform: translate(-50%);
-  	*/
-/*
+  	
+  	display: none;
+}
+
+#next {
 	position: absolute;	
 	right: 80px;
 	top: 25px;
 	text-align: center;
-	*/
-	display: none;
 }
 
 #previous {
-	/*position: absolute;
-	left: 50%;
-	top: 4em;
-	-ms-transform: translateX(-50%);
-  	-webkit-transform: translate(-50%);
-  	-o-transform: translate(-50%, -50%);
-  	-mos-transform: translate(-50%, -50%);
-  	transform: translate(-50%);
-  	*/
-/*
 	position: absolute;
 	left: 80px;
 	top: 25px;
 	text-align: center;
-	*/
-	display: none;
 }
 
 #slider {
-	/*left: 10px;
-	right: 10px;*/
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 0%;
 	background-color: grey;
 	background: grey;
-	display: none;
 }
 
 #slider .noUi-connect {
 	background-color: grey;
 	background: grey;
-}
-
-#buttons div {
-	margin-bottom: 0.2em;
 }
 
 #buttons div.t1 {
@@ -535,13 +529,19 @@ div {
 }
 
 #buttons div.t3 {
+	position: absolute;
+	left: 5%;
+	top: -0.75em;
 	text-align: center;
-	width: 100%; 
+	width: 50%; 
 }
 
 #buttons div.t4 {
+	position: absolute;
+	right: 5%;
+	top: -0.75em;
 	text-align: center;
-	width: 100%; 
+	width: 50%; 
 }
 
 #output {
@@ -718,14 +718,17 @@ select {
 	position: relative;
 	left: 50%;
 	top: 50px;
-	max-width: 350px;
-	font-size: 48px;
+	max-width: 350px;;
 
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%);
   	-mos-transform: translate(-50%);
   	transform: translate(-50%);
+}
+
+#splash_button {
+	margin-bottom: 15px;
 }
 
 #splash_images {
@@ -770,17 +773,17 @@ div.textInput button {
 	color: whitesmoke;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 460px) {
 	#splash_title {
 		font-size: 1.3em;
 	}
 	
     #splash_button {
-    	font-size: 48px;
+    	font-size: 3em;
     }
     
     #splash_text {
-    	font-size: 48px;
+    	font-size: 1.2em;
     }
     
     #splash_images div img {

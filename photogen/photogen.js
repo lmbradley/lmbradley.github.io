@@ -382,7 +382,7 @@ $(window).on('load', function() {
 			image = img;
 			//height = $('#list'+num).height();
         	width = $('#list'+num).width();
-			height = Math.max(400, window.innerHeight/2);
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list'+num).height());
         	heightScale = 1;
         	widthScale = 1;
         	
@@ -1073,7 +1073,7 @@ $(window).on('load', function() {
 //    	});
 		$(window).on('resize', function() {
 			width = $('#list2').width();
-			height = Math.max(400, window.innerHeight/2);
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list'+num).height())
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
@@ -1177,6 +1177,10 @@ $(window).on('load', function() {
     	//drop image two
     	//drop image two
     	//$("#slider").fadeIn("fast");
+    	if (!onMobile) {
+    		$("#buttons").height("");
+    		$("#buttons > div").css("margin-bottom", "");
+    	}
     	$("#frametwo").fadeIn("slow");
     	$("#previous").fadeOut("slow");
 		//$("#slider").fadeOut("slow");
@@ -1201,10 +1205,15 @@ $(window).on('load', function() {
     	frame = 2;
     	//$("#slider").fadeOut(0);
     	createFrameThree();
+    	if (!onMobile) {
+    		$("#buttons").height("calc(100% - 430px)");
+    		$("#buttons > div").css("margin-bottom", "0.4em");
+    	}
     	$("#framethree").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	$("#selection").fadeIn("slow");
     	$(".textInput").fadeIn("slow");
+    	$(".textInput").prop("display", "inline-block");
     	setTimeout(function() {
     		drawText();
     		console.log('test draw');
