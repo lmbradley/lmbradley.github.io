@@ -458,9 +458,6 @@ $(window).on('load', function() {
 	}
 	
 	function canvasHandler(canvas, image3, num) {
-	//console.log(num);
-					//console.log(image);
-		disableCanvas = false;
 		var ctx = canvas.getContext('2d');
 		var offset = $(canvas).offset();
 		var offsetX = offset.left;
@@ -937,6 +934,7 @@ $(window).on('load', function() {
 					},600);
 					return;
 				}
+				disableCanvas = true;
     			clearTimeout(timer);
     			$(".util").fadeOut("slow");
     			if(frame<2) {
@@ -1043,6 +1041,7 @@ $(window).on('load', function() {
 				disableCanvas = true;
 				resetFrame();
     			window.setTimeout(frameTwo, 600);
+    			window.setTimeout(refreshCanvas, 600);
     		} else if(frame==3) {
     			resetFrame();
     			window.setTimeout(frameThree, 600);
@@ -1062,12 +1061,11 @@ $(window).on('load', function() {
     	});
     	
 		$(window).on('resize', function() {
-			width = $('#list2').width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list2').height());
+			width = $('#popuplist').width();
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height()*0.75);
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
-			//draw(canvas, image, imageX, imageY);
 			refreshCanvas();
 		});
 		
@@ -1100,8 +1098,8 @@ $(window).on('load', function() {
     	var rotatedImg = new Image();
     	rotatedImg.onload = function() {
     		// Reposition image
-   	 		imageX = imageX + img.width/2 - rotatedImg.width/2;
-   	 		imageY = imageY + img.height/2 - rotatedImg.height/2;
+   	 		imageX = imageX + img.width/2/scale/zoomLevel[1] - rotatedImg.width/2/scale/zoomLevel[1];
+   	 		imageY = imageY + img.height/2/scale/zoomLevel[1] - rotatedImg.height/2/scale/zoomLevel[1];
     		image = rotatedImg;
     		// Done
     		refreshCanvas();
@@ -1109,6 +1107,7 @@ $(window).on('load', function() {
 		img.onload = function() {
 			// Create a new canvas to generate the rotated image, then pass it to upload.
 			// Transforming upload doesn't work as we'd have to re-align the drag/touch events too.
+			// Maybe find a js image manip library to include here, this is slow on mobile.
     		var rotate = document.createElement("canvas");
     		rotate.width = img.height;
     		rotate.height = img.width;
