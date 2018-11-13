@@ -743,8 +743,8 @@ select {
 }
 
 #splash_text {
-	height: calc(100vh - 1.7em - 12px);
-	max-height: calc(100vh - 1.7em - 12px);
+	height: calc(100vh - 1.7em);
+	max-height: calc(100vh - 1.7em);
 	font-size: 48px;
 	overflow-y: scroll;
 }
