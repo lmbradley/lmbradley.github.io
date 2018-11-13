@@ -246,7 +246,7 @@ select {
     
     
 	position: absolute;
-	bottom: 1em;
+	bottom: 20px;
 	left: 50%;
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
@@ -743,17 +743,9 @@ select {
 }
 
 #splash_text {
-	position: relative;
-	left: 50%;
-	top: 50px;
-	max-width: 350px;
-	font-size: 48px;
-
-	-ms-transform: translateX(-50%);
-  	-webkit-transform: translate(-50%);
-  	-o-transform: translate(-50%);
-  	-mos-transform: translate(-50%);
-  	transform: translate(-50%);
+	/*height: 75vh;*/
+	height: calc(100vh - 1.7em - 66px);
+	overflow-y: scroll;
 }
 
 #splash_images {

@@ -206,7 +206,6 @@ div {
     background: linear-gradient(rgb(99,186,236) 50%, rgb(68,163,226) 25%, rgb(30,133,211)); 
 	width: 7em;
 	text-align: center;
-	margin: 0 auto;
 	margin-top: 4em;
 	padding: 6px 0 0;
 	border-radius: 5px;
@@ -216,12 +215,11 @@ div {
 	font-weight: bold;
 	color: white;
 	font-size: 1em;
+	
+	
 
     height: 1.7em;
-    
-    
-	position: absolute;
-	bottom: 1em;
+    position:relative;
 	left: 50%;
 	-ms-transform: translateX(-50%);
   	-webkit-transform: translate(-50%);
@@ -715,17 +713,8 @@ select {
 }
 
 #splash_text {
-	position: relative;
-	left: 50%;
-	top: 50px;
-	max-width: 350px;
-	font-size: 48px;
-
-	-ms-transform: translateX(-50%);
-  	-webkit-transform: translate(-50%);
-  	-o-transform: translate(-50%);
-  	-mos-transform: translate(-50%);
-  	transform: translate(-50%);
+	width: 66%;
+	display: inline-block;
 }
 
 #splash_images {

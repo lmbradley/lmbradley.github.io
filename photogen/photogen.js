@@ -17,11 +17,6 @@ var changed, timer, image, resize;
 var cHeight = 400;
 var cWidth = 400;
 
-// We want this for a few different things.
-var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
-window.alert(window.innerHeight + " " + window.innerWidth);
-var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
-
 var textTop = "Because";
 var textMiddle = "________";
 var textBottom = "________";
@@ -50,6 +45,12 @@ var disableCanvas = false;
 var debug = true;
 
 $(window).on('load', function() {
+	// We want this for a few different things.
+	var onMobile = ($("#onMobile").val() == "true");
+	//var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
+	//window.alert(window.innerHeight + " " + window.innerWidth);
+	var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
+
 	var status = document.getElementById('status');
 	var list = document.getElementsByClassName('lists');
 	var slider = document.getElementById('slider');
