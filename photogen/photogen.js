@@ -48,7 +48,7 @@ $(window).on('load', function() {
 	// We want this for a few different things.
 	var onMobile = ($("#onMobile").val() == "true");
 	//var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
-	//window.alert(window.innerHeight + " " + window.innerWidth);
+	window.alert(window.innerHeight + " " + window.innerWidth);
 	var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
 
 	var status = document.getElementById('status');
@@ -1062,7 +1062,7 @@ $(window).on('load', function() {
     	
 		$(window).on('resize', function() {
 			width = $('#popuplist').width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height()*0.75);
+			height = (onMobile ? Math.max(400, window.innerHeight/2) 0: $('#popuplist').height()*0.75);
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
@@ -1073,7 +1073,7 @@ $(window).on('load', function() {
     
     	//setup complete; show frame one
 	     frameTwo();
-		//UPDATE: For some reason this line is down here.  Here what it does is make an empty div fade in, which then gets populated with the slider when it gets created.
+		//UPDATE: For some reason this line is down here.  Here what it does is make an empty div fa000de in, which then gets populated with the slider when it gets created.
 		//This got changed so we need to take this out.
 	    // $("#slider").fadeIn("fast");
     }
