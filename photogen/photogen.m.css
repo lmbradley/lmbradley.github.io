@@ -13,10 +13,6 @@ div {
 	border-radius: 2px; 
 }
 
-select {
-	font-size: 36px;
-}
-
 .center {
 	position: absolute;
 	left: 50%;
@@ -142,7 +138,7 @@ select {
 	/*left: 50%;
 	top: 35%;*/
 	color: gold;
-	font-size: 48px;
+	/*font-size: 48px;*/
 	text-align: center;
 	/*width: 235px;
 	height: 185px;
@@ -241,8 +237,9 @@ select {
 	font-weight: bold;
 	color: white;
 	/*font-size: 48px;*/
+	font-size: 1.2em;
 
-    height: 1.7em;
+    height: 1.9em;
     
     
 	position: absolute;
@@ -264,7 +261,7 @@ select {
 
 
 #buttons {
-	font-size:60px;
+	/*font-size:60px;*/
 	width: 100%;
 	min-height: 50%;
 	position: absolute;
@@ -288,11 +285,12 @@ select {
 	border: 1px solid #33312e;
 	font-weight: bold;
 	color: white;
-	font-size: 48px;
+	/*font-size: 48px;*/
+	font-size: 1.2em;
 
 
 	display: inline-block;
-    height: 1.7em;
+    height: 1.9em;
 }
 
 #buttons .rotate_button {
@@ -743,8 +741,8 @@ select {
 }
 
 #splash_text {
-	height: calc(100% - 1.7em - 26px);
-	max-height: calc(100% - 1.7em - 26px);
+	height: calc(100% - 1.9em - 32px);
+	max-height: calc(100% - 1.9em - 32px);
 	/*font-size: 48px;*/
 	overflow-y: scroll;
 }
