@@ -791,7 +791,7 @@ div.textInput button {
 	color: whitesmoke;
 }
 
-@media screen and (max-width: 5.5in) {
+@media screen and (max-width: 9in) {
 	#splash_text {
 		color: blue !important;
 	}
