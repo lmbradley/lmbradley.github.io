@@ -1062,7 +1062,7 @@ $(window).on('load', function() {
     	
 		$(window).on('resize', function() {
 			width = $('#popuplist').width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) 0: $('#popuplist').height()*0.75);
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height()*0.75);
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
