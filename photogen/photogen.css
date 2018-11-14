@@ -759,6 +759,8 @@ div.textInput button {
 	color: whitesmoke;
 }
 
-@media screen and (max-aspect-ratio: 2/3 or max-height: 540px) {
-	color: blue !important;
+@media screen and (max-width: 5.5in) {
+	#splash_text {
+		color: blue !important;
+	}
 }
