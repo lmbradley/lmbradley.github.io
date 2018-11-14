@@ -789,7 +789,10 @@ div.textInput button {
 	color: whitesmoke;
 }
 
-@media screen and (max-width: 555px) {
+/* Mobile CSS */
+@media screen and (max-width: 540px), screen and (max-height: 540px),
+	   screen and (min-resolution: 240dpi) and (max-width: 1000px),
+	   screen and (min-resolution: 240dpi) and (max-height: 1000px) {
 	#splash_text {
 		color: blue !important;
 	}
