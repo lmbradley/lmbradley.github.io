@@ -240,7 +240,7 @@ select {
 	border: 1px solid #33312e;
 	font-weight: bold;
 	color: white;
-	font-size: 48px;
+	/*font-size: 48px;*/
 
     height: 1.7em;
     
@@ -732,7 +732,7 @@ select {
 	padding: 20px 0;
 	position: relative;
 	height: 100%;
-	font-size: 48px;
+	/*font-size: 48px;*/
 	left: 50%;
 	text-align: center;
 	-ms-transform: translateX(-50%) translateY(0%);
@@ -745,7 +745,7 @@ select {
 #splash_text {
 	height: calc(100% - 1.7em - 26px);
 	max-height: calc(100% - 1.7em - 26px);
-	font-size: 48px;
+	/*font-size: 48px;*/
 	overflow-y: scroll;
 }
 
@@ -791,7 +791,7 @@ div.textInput button {
 	color: whitesmoke;
 }
 
-@media screen and (max-width: 9in) {
+@media screen and (max-width: 555px) {
 	#splash_text {
 		color: blue !important;
 	}
