@@ -138,7 +138,7 @@ div {
 	/*left: 50%;
 	top: 35%;*/
 	color: gold;
-	font-size: 48px;
+	font-size: 3vh;
 	text-align: center;
 	/*width: 235px;
 	height: 185px;
@@ -284,7 +284,7 @@ div {
 	border: 1px solid #33312e;
 	font-weight: bold;
 	color: white;
-	font-size: 48px;
+	font-size: 3vh;
 
 
 	display: inline-block;
@@ -661,7 +661,7 @@ select {
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
-    font-size: 48px;
+    font-size: 3vh;
 }
 
 .expandingAreaWrapper {
@@ -728,7 +728,7 @@ select {
 	padding: 20px 0;
 	position: relative;
 	height: 100%;
-	font-size: 48px;
+	font-size: 3vh;
 	left: 50%;
 	text-align: center;
 	font-size: 1em;
