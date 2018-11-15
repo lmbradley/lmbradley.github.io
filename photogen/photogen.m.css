@@ -40,6 +40,7 @@ div {
     /*height: 60%;*/
     height: 50%;
 	/*min-height: 400px;*/
+	max-height: 80vh;
     
     cursor:pointer;
     -webkit-border-radius: 4px;
