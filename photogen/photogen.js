@@ -412,8 +412,8 @@ $(window).on('load', function() {
 			canvas.height = height; 
 			canvas.id = 'upload';
 			canvas.style.height = "100%";
-			canvas.style.marginLeft = "50%";
-			canvas.style.transform = "translate(-50%)";
+			//canvas.style.marginLeft = "50%";
+			//canvas.style.transform = "translate(-50%)";
 			
 			//draw border
 			var cctx = canvas.getContext('2d');
@@ -865,7 +865,6 @@ $(window).on('load', function() {
     	output.width = cWidth;
     	output.height = cHeight;
     	output.id = "output";
-		output.style.height = "100%";
     	var octx = output.getContext('2d');
 		var saveImage2 = new Image();
 		
@@ -882,7 +881,7 @@ $(window).on('load', function() {
         		//new
         		
             	$(status).text("Output created.");
-            	$('#framethree').append(output);
+            	$('#list3').append(output);
             	armyseal.onload = function() {
             		//octx.drawImage(armyseal, cWidth-80, cHeight-90, 75, 75);
             		octx.drawImage(armyseal, 0, 0, cWidth, cHeight);
@@ -911,8 +910,7 @@ $(window).on('load', function() {
     	var lastImg = new Image();
     	lastImg.id = "output";
     	lastImg.src = output.toDataURL();
-    	lastImg.style.height = "100%";
-    	$('#framefour').append(lastImg);
+    	$('#list4').append(lastImg);
     }
     
     function frameSetup() {
