@@ -383,7 +383,8 @@ $(window).on('load', function() {
 			image = img;
 			//height = $('#list'+num).height();
         	width = $('#list'+num).width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list'+num).height());
+        	availHeight =  $('#list'+num).height();
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : availHeight)
         	heightScale = 1;
         	widthScale = 1;
         	
@@ -409,7 +410,10 @@ $(window).on('load', function() {
 			canvas.width = width;
 			canvas.height = height; 
 			canvas.id = 'upload';
-			
+			//If we have less than 400px of room for the canvas (i.e. mobile), then we scale it down to fit
+			if (availHeight < 400) {
+				$("#upload").css("transform: scale(" + availHeight/400 + ")");
+			}
 			//draw border
 			var cctx = canvas.getContext('2d');
 			cctx.fillStyle = "#000000";
