@@ -96,6 +96,7 @@ div {
     min-height: 50%;
 	/*min-height:400px;*/
 	max-height: 80%;
+	text-align: center;
 	/*-ms-transform: translateX(-50%) translateY(-50%);
   	-webkit-transform: translate(-50%,-50%);
   	-o-transform: translate(-50%, -50%);
@@ -266,7 +267,7 @@ div {
 #buttons {
 	font-size:20px;
 	width: 100%;
-	min-height: 50%;
+	min-height: 8.5em;
 	position: absolute;
 	text-align: center;
 }
@@ -576,7 +577,7 @@ div {
   	-webkit-transform: translate(-50%);
   	-o-transform: translate(-50%);
   	-mos-transform: translate(-50%);
-  	transform: translate(-50%);
+  	transform: translate(-50%);*/
   	border-radius: 5px;
   	border: 1px solid black;
 		
