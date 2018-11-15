@@ -91,7 +91,7 @@ div {
 	height: 90%;
 	max-height: 565px;*/
 	height: 50%;
-	min-height:400px;
+	/*min-height:400px;*/
 	max-height: 80vh !important;
 	/*-ms-transform: translateX(-50%) translateY(-50%);
   	-webkit-transform: translate(-50%,-50%);
