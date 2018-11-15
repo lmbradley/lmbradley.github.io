@@ -166,9 +166,10 @@ div {
 	min-width: 400px;
 	width: 85%;
 	max-width: 960px;
-	min-height: 400px;
+	/*min-height: 400px;
 	height: 90%;
-	max-height: 670px;
+	max-height: 670px;*/
+	height: 670px;
 
 	
 	position: absolute;

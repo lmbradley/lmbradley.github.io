@@ -236,7 +236,7 @@ div {
 	border: 1px solid #33312e;
 	font-weight: bold;
 	color: white;
-	font-size: 48px;
+	font-size: 3vh;
 
     height: 1.7em;
     
@@ -742,7 +742,7 @@ select {
 #splash_text {
 	height: calc(100% - 1.7em - 26px);
 	max-height: calc(100% - 1.7em - 26px);
-	font-size: 48px;
+	font-size: 3vh;
 	overflow-y: scroll;
 }
 
@@ -789,9 +789,9 @@ div.textInput button {
 }
 
 /* Mobile CSS
-@media screen and (max-width: 540px), screen and (max-height: 540px),
+@media screen and (max-width: 540px), screen and (max-height: 600px),
 	   screen and (min-resolution: 180dpi) and (max-width: 1000px),
-	   screen and (min-resolution: 180dpi) and (max-height: 1000px) {
+	   screen and (min-resolution: 180dpi) and (max-height: 1200px) {
 	#splash {
 		position: absolute;
 		width: 100%;
