@@ -182,7 +182,7 @@ div {
 #popuplist {
 	font-family: arial;
 	color: gold;
-	min-width: 400px;
+	/*min-width: 400px;*/
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
