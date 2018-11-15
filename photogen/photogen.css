@@ -28,7 +28,7 @@ div {
 	display: block;
 }
 
-.lists {
+.lists, .imglists {
 	margin: 0 auto;
     
     position: absolute;
@@ -163,7 +163,7 @@ div {
 #popuplist {
 	font-family: arial;
 	color: gold;
-	min-width: 400px;
+	min-width: 500px;
 	width: 85%;
 	max-width: 960px;
 	/*min-height: 400px;
@@ -760,8 +760,114 @@ div.textInput button {
 	color: whitesmoke;
 }
 
-@media screen and (max-width: 555px) {
-	#splash_text {
-		color: blue !important;
+/* Mobile CSS:  Changes splash page and box/button layout. */
+@media screen and (max-width: 540px), screen and (max-height: 540px) {
+	#splash {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index:100;
+		background-color: rgb(60,60,60);
+		color: gold;
+		font-family: arial;
 	}
+	#splash_title {
+		box-sizing: border-box;
+		padding: 20px 0;
+		position: relative;
+		top: 0px;
+		height: 100%;
+		font-size: 16px;
+		left: 50%;
+		text-align: center;
+		-ms-transform: translateX(-50%) translateY(0%);
+	  	-webkit-transform: translate(-50%,0%);
+	  	-o-transform: translate(-50%,0%);
+	  	-ms-transform: translateX(-50%) translateY(0%);
+	  	transform: translate(-50%,0%);
+	}
+
+	#splash_text {
+		height: calc(100% - 1.7em - 26px);
+		max-height: calc(100% - 1.7em - 26px);
+		font-size: 16px;
+		overflow-y: scroll;
+		width: 100%;
+	}
+	
+	#splash_button {
+		position: absolute;
+		bottom: 20px;
+		left: 50%;
+}
+	
+	#popuplist {
+		font-family: arial;
+		color: gold;
+		min-width: 400px;
+		width: 100%;
+		height: 100%;
+		overflow-y: scroll;
+		position: absolute;
+		top: 0;
+		left: 0;
+		
+		min-width: none;
+		max-height: none;
+		-ms-transform: none;
+		-webkit-transform: none;
+		-o-transform: none;
+		-mos-transform: none;
+		transform: none;
+}
+	
+	.box {
+		width: 100%;
+		height: 400px;
+	    min-height: 50%;
+		max-height: 80%;
+		text-align: center;
+	  	background-color: rgb(59,59,59);
+	  	
+	  	border-bottom: 3px rgb(44,44,44) solid;
+	  	margin-bottom: 0.2em;
+	  	
+	  	border-radius: none;
+	}
+	
+	.lists, .imglists {
+		margin: 0 auto;
+    	
+    	position: absolute;
+    	
+    	width: 100%;
+    	height: 400px;
+    	min-height: 50%;
+		max-height: 80%;
+    	
+    	cursor:pointer;
+    	-webkit-border-radius: 4px;
+    	-moz-border-radius: 4px;
+    	border-radius: 4px;
+	}
+	
+	#output {
+		height: 100%;
+	}
+	
+	#buttons {
+		font-size:20px;
+		width: 100%;
+		min-height: 9em;
+		position: absolute;
+		text-align: center;
+		
+		bottom: auto;
+	}
+	
+	.slider {
+		left: none;
+		right: none;
+	}
+	
 }

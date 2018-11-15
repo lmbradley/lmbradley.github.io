@@ -865,7 +865,7 @@ $(window).on('load', function() {
     	output.width = cWidth;
     	output.height = cHeight;
     	output.id = "output";
-    	output.style.height = "100%";
+    	//output.style.height = "100%";
     	var octx = output.getContext('2d');
 		var saveImage2 = new Image();
 		
@@ -911,7 +911,7 @@ $(window).on('load', function() {
     	var lastImg = new Image();
     	lastImg.id = "output";
     	lastImg.src = output.toDataURL();
-    	lastImg.style.height = "100%";
+    	//lastImg.style.height = "100%";
     	$('#list4').append(lastImg);
     }
     
