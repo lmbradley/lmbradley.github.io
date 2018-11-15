@@ -17,6 +17,9 @@ var changed, timer, image, resize;
 var cHeight = 400;
 var cWidth = 400;
 
+var availHeight;
+var cScale;
+
 var textTop = "Because";
 var textMiddle = "________";
 var textBottom = "________";
@@ -48,7 +51,6 @@ $(window).on('load', function() {
 	// We want this for a few different things.
 	var onMobile = ($("#onMobile").val() == "true");
 	//var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
-	window.alert(window.innerHeight + " " + window.innerWidth);
 	var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
 
 	var status = document.getElementById('status');
@@ -383,8 +385,7 @@ $(window).on('load', function() {
 			image = img;
 			//height = $('#list'+num).height();
         	width = $('#list'+num).width();
-        	availHeight =  $('#list'+num).height();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : availHeight)
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#list'+num).height());
         	heightScale = 1;
         	widthScale = 1;
         	
@@ -410,10 +411,10 @@ $(window).on('load', function() {
 			canvas.width = width;
 			canvas.height = height; 
 			canvas.id = 'upload';
-			//If we have less than 400px of room for the canvas (i.e. mobile), then we scale it down to fit
-			if (availHeight < 400) {
-				$("#upload").css("transform", "scale(" + availHeight/400 + ")");
-			}
+			canvas.style.height = "100%";
+			canvas.style.marginLeft = "50%";
+			canvas.style.transform = "translate(-50%)";
+			
 			//draw border
 			var cctx = canvas.getContext('2d');
 			cctx.fillStyle = "#000000";
@@ -864,8 +865,10 @@ $(window).on('load', function() {
     	output.width = cWidth;
     	output.height = cHeight;
     	output.id = "output";
+		output.style.height = "100%";
     	var octx = output.getContext('2d');
 		var saveImage2 = new Image();
+		
     	saveImage2.onload = function() {
 
     		octx.drawImage(saveImage2, 0, 0);
@@ -908,7 +911,7 @@ $(window).on('load', function() {
     	var lastImg = new Image();
     	lastImg.id = "output";
     	lastImg.src = output.toDataURL();
-    	
+    	lastImg.style.height = "100%";
     	$('#framefour').append(lastImg);
     }
     
@@ -1066,7 +1069,7 @@ $(window).on('load', function() {
     	
 		$(window).on('resize', function() {
 			width = $('#popuplist').width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height()*0.75);
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height() * 0.75);
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
@@ -1077,7 +1080,7 @@ $(window).on('load', function() {
     
     	//setup complete; show frame one
 	     frameTwo();
-		//UPDATE: For some reason this line is down here.  Here what it does is make an empty div fa000de in, which then gets populated with the slider when it gets created.
+		//UPDATE: For some reason this line is down here.  Here what it does is make an empty div fade in, which then gets populated with the slider when it gets created.
 		//This got changed so we need to take this out.
 	    // $("#slider").fadeIn("fast");
     }
