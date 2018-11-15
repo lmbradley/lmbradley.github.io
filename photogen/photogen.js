@@ -412,7 +412,7 @@ $(window).on('load', function() {
 			canvas.id = 'upload';
 			//If we have less than 400px of room for the canvas (i.e. mobile), then we scale it down to fit
 			if (availHeight < 400) {
-				$("#upload").css("transform: scale(" + availHeight/400 + ")");
+				$("#upload").css("transform", "scale(" + availHeight/400 + ")");
 			}
 			//draw border
 			var cctx = canvas.getContext('2d');
