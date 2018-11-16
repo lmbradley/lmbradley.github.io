@@ -45,14 +45,16 @@ var color = "#000000";
 var time = 0;
 var disableCanvas = false;
 
+var onMobile;
+
 var debug = true;
 
 $(window).on('load', function() {
 	// We want this for a few different things.
-	var onMobile = ($("#onMobile").val() == "true");
-	//var onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
-	var fadeoutTime = (onMobile ? 0 : 600); // Equivalent to slow fadeout
-
+	onMobile = (window.innerHeight < 480 || window.innerWidth < 480);
+	// Equivalent to slow fadeout.  For use if they should be removed later.
+	var fadeoutTime = (onMobile ? 0 : 600); 
+	
 	var status = document.getElementById('status');
 	var list = document.getElementsByClassName('lists');
 	var slider = document.getElementById('slider');
@@ -935,7 +937,6 @@ $(window).on('load', function() {
 						$("#slider").fadeIn("slow");
 						$("#rotate").fadeIn("slow");
 						$("#drag").fadeIn("slow");
-						$("#load").fadeIn("slow");
 						$("#next").fadeIn("slow");
 						disableCanvas = false;
 					},600);
@@ -1068,6 +1069,7 @@ $(window).on('load', function() {
     	});
     	
 		$(window).on('resize', function() {
+			onMobile = (window.innerHeight < 540 || window.innerWidth < 540);
 			width = $('#popuplist').width();
 			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height() * 0.75);
 			var canvas = document.getElementById('upload');
@@ -1173,10 +1175,7 @@ $(window).on('load', function() {
     	//drop image two
     	//drop image two
     	//$("#slider").fadeIn("fast");
-    	if (!onMobile) {
-    		$("#buttons").height("");
-    		$("#buttons > div").css("margin-bottom", "");
-    	}
+    	$("#bottom-margin").css("height", "0");
     	$("#frametwo").fadeIn("slow");
     	$("#previous").fadeOut("slow");
 		//$("#slider").fadeOut("slow");
@@ -1201,10 +1200,7 @@ $(window).on('load', function() {
     	frame = 2;
     	//$("#slider").fadeOut(0);
     	createFrameThree();
-    	if (!onMobile) {
-    		$("#buttons").height("calc(100% - 430px)");
-    		$("#buttons > div").css("margin-bottom", "0.4em");
-    	}
+    	$("#bottom-margin").css("height", "0.5em");
     	$("#framethree").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	$("#selection").fadeIn("slow");
@@ -1228,6 +1224,7 @@ $(window).on('load', function() {
     	//resetFrame();
     	selectDisable();
     	//output/download/share
+    	$("#bottom-margin").css("height", "4em");
     	$("#framefour").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	frame = 3;
@@ -1242,259 +1239,7 @@ $(window).on('load', function() {
     	//}, 5000);
     }
     
-    //FACEBOOK
-	// from: http://stackoverflow.com/a/5303242/945521
-	if ( XMLHttpRequest.prototype.sendAsBinary === undefined ) {
-	    XMLHttpRequest.prototype.sendAsBinary = function(string) {
-	        var bytes = Array.prototype.map.call(string, function(c) {
-	            return c.charCodeAt(0) & 0xff;
-	        });
-	        this.send(new Uint8Array(bytes).buffer);
-	    };
-	};
-	
-	function postImageToFacebook(authToken, filename, mimeType, imageData, message){
-	    var boundary = '----ThisIsTheBoundary1234567890';
-	    //encode image file
-	    var formData = '--' + boundary + '\r\n';
-	    formData += 'Content-Disposition: form-data; name="source"; filename="' + filename + '"\r\n';
-	    formData += 'Content-Type: ' + mimeType + '\r\n\r\n';
-	    for ( var i = 0; i < imageData.length; ++i ) {
-	        formData += String.fromCharCode( imageData[ i ] & 0xff );
-	    }
-	    formData += '\r\n';
-	    formData += '--' + boundary + '\r\n';
-	    formData += 'Content-Disposition: form-data; name="message"\r\n\r\n';
-	    formData += message + '\r\n';
-	    formData += '--' + boundary + '--\r\n';
+    checkSupport();
 
-	    var xhr = new XMLHttpRequest();
-	    xhr.open( 'POST', 'https://graph.facebook.com/me/photos?access_token=' + authToken, true );
-	    xhr.onload = function() {
-	        $(status).text("Connected to FB");
-	    };
-	    xhr.onerror = function() {
-	    	//failed to connect to FB via network
-	    	$(status).text("Failed to connect to FB - network")
-	    };
-	    xhr.onreadystatechange = function() {
-	    	if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-	    		//completed
-	    		$(status).text("Connected to FB, Shared to FB")
-	    		setFBShareResponse("Shared to Facebook.");
-	    		$(status).text("Shared to Facebook.");
-	    		sharedToFB=true;
-	    	} else if(xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
-	    		//failed to post to FB via application level
-	    		$(status).text("Connected to FB, Failed to share - application");
-	    		setFBShareResponse("Failed to share to Facebook. Logged in?");
-	    	} else {
-	    		setFBShareResponse("Failed to connect.");
-	    	}
-	    };
-	    xhr.setRequestHeader( "Content-Type", "multipart/form-data; boundary=" + boundary );
-	    xhr.sendAsBinary( formData );
-	};
-	
-	function updateOGImage() {
-		//to use if switching to OG Share
-	}
-    	
-	function checkFBAccess() {
-//		sendCanvasToFB();
-		FB.getLoginStatus( function(response) {
-				if (!response || response.status != 'connected')
-					FB.login();
-				else {
-					sendCanvasToFB(response.authResponse.accessToken);
-				}
-			});
-	}
-	
-    function sendCanvasToFB(accessToken) {
-    	if(sharedToFB == false) {
-			var data = output.toDataURL("image/png");
-	    	var encoded = data.substring(data.indexOf(',')+1, data.length);
-	    	var decoded = Base64Binary.decode(encoded);
-//			//console.log(encoded);
-//			var imageData = "";
-//			
-//			for ( var i = 0; i < decoded.length; ++i ) {
-//				imageData += String.fromCharCode( decoded[ i ] & 0xff );
-//			}
-			
-//			// vvvvvvv so far it -almost- works.  we just need to find the thing that uploads the file.
-//			FB.api(
-//				"/me/photos",
-//				"POST",
-//				{
-//					//'source': decoded,
-//					'url': output.toDataURL("image/png"),
-//					'published': 'false',
-//					'access_token': accessToken
-//				}, function(response) {
-//					if (response) console.log(response);
-//					console.log("buttsack");
-//				}	
-//			);
-			
-//			var formData = new FormData();
-//			formData.append('access_token', accessToken);
-//			formData.append('source', decoded);
-//			$.ajax({
-//				type: "POST",
-//				url: "https://graph.facebook.com/me/photos",
-//				contentType: false,
-//				data: data,
-//				processData: false,
-//				success:function(data) {
-//					console.log("AIDS");
-//				}	
-//			});
-
-//			FB.ui({
-//				method: 'share',
-//				type: 'image',
-//				//image: 'data:image/png;base64,'+decoded,
-//				url: output.toDataURL("image/png"),
-//				hashtag: '#ArmyReserveChallenge'
-//			}, function(response){
-//				console.log("test");
-//				if (response.error_message) {
-//					console.log(response.error_message);
-//				}
-//			});
-			
-//			FB.ui({
-//				method: 'feed',
-//				source: output.toDataURL("image/png"),
-//				href: 'http://localhost:8000',
-//				hashtag: '#ArmyReserveChallenge'
-//			}, function(response) {
-//				console.log("test");
-//			});
-			
-//			$.ajax({
-//				type: "PUT",
-//				url: "http://localhost:8000/test.png",
-//				data: data,
-//				success:function(data) {
-//					console.log("ha");
-//				}
-//			});
-			// Facebook removed the publish_actions scope from the Graph API which makes it impossible to upload
-			// image data the old way.  However, in all their genius, the new way with the Sharing API only accepts
-			// URLs and there isn't any way to actually upload an image.
-			// This solution is the only workaround I was able to think of after a lot of research: it uses a php
-			// script to write the data to the server, which is really hazardous.  I don't know if AEM supports it,
-			// but it'd also be possible to use a HTTP PUT request to add the file.
-			console.log(encoded);
-			$.ajax({
-				type: "POST",
-				url: "writeimage.php",
-				data: {
-					imageData: encoded // Since we POST the image, we need the base64 version.
-				},
-				function(data) {
-					console.log("test");
-				}
-			});
-			FB.ui({
-					method: 'share_open_graph',
-					action_type: 'og.posts',
-					hashtag: '#ArmyReserveChallenge',
-					action_properties: JSON.stringify({
-						object: {
-							'og:url': 'http://localhost:8000/photogen.html',
-							'og:title': 'Army Reserve Challenge',
-							//'og:image': 'http://localhost:8000/download.png'
-							'og:image': 'https://lmbradley.github.io/Kentucky_counties_map.png'
-							//'og:hashtag': '#ArmyReserveChallenge'
-						}
-					})
-				}, function(response) {
-					console.log("test");
-				});
-			
-//			output.toBlob(function(blob) {
-//				console.log(blob);
-//				var f = new File([blob], "temp.png", {type: "image/png"});
-//				var url = URL.createObjectURL(f);
-//				console.log(f);
-//				URL.revokeObjectURL(url);
-				
-				
-				
-//				$.ajax({
-//					type: "POST",
-//					url: "writeimage.php",
-//					data: data,
-//					dataType: "image/png",
-//					success:function(data) {
-//						console.log("AIDS");
-//					}	
-//				});
-					
-//				FB.ui({
-//					method: 'share_open_graph',
-//					action_type: 'og.posts',
-//					action_properties: JSON.stringify({
-//						object: {
-//							'og:url': 'http://localhost:8000/photogen.html',
-//							'og:title': 'Army Reserve Challenge'
-//							//'og:image': output.toDataURL("image/png"),
-//							//'og:hashtag': '#ArmyReserveChallenge',
-//							'source': 
-//						}
-//					})
-//				}, function(response) {
-//					console.log("test");
-//				});
-//				
-//			});
-			
-			
-//	    	FB.getLoginStatus(function(response) {
-//	    		if(response.status == "connected") {
-//	    			postImageToFacebook(response.authResponse.accessToken, "goarmyreserve.com Photo Gen", "image/png", decoded, message);
-//	    		} else {
-//	    			FB.login(function(response)  {
-//	    				postImageToFacebook(response.authResponse.accessToken, "goarmyreserve.com Photo Gen", "image/png", decoded, message);
-//	    			}, {scope: "publish_actions"});
-//	    		}
-//	    	});
-    	} else {
-    		setFBShareResponse("Shared to Facebook.");
-    		//already shared
-    	}
-    }
-    //END
-    
-    function makeExpandingArea(container) {
-    	 var area = container.querySelector('textarea');
-    	 var span = container.querySelector('span');
-    	 if (area.addEventListener) {
-    	   area.addEventListener('input', function() {
-    	     span.textContent = area.value;
-    	   }, false);
-    	   span.textContent = area.value;
-    	 } else if (area.attachEvent) {
-    	   // IE8 compatibility
-    	   area.attachEvent('onpro pertychange', function() {
-    	     span.innerText = area.value;
-    	   });
-    	   span.innerText = area.value;
-    	 }
-    	// Enable extra CSS
-    	container.className += " active";
-    	}var areas = document.querySelectorAll('.expandingArea');
-    	var l = areas.length;while (l--) {
-    	 makeExpandingArea(areas[l]);
-    	}
-
-    	
-    	checkSupport();
-
-    	
-    	//end jquery
+    //end jquery
 });
