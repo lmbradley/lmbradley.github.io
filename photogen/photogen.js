@@ -453,6 +453,7 @@ $(window).on('load', function() {
 			$("#slider").fadeIn("slow");
 			$("#rotate").fadeIn("slow");
 			$("#drag").fadeIn("slow");
+			$("#previous").fadeIn("slow");
 		
 			ready = true; //can continue to next slide
 			$("#next").fadeIn("slow");
@@ -937,6 +938,7 @@ $(window).on('load', function() {
 						$("#slider").fadeIn("slow");
 						$("#rotate").fadeIn("slow");
 						$("#drag").fadeIn("slow");
+    					$("#previous").fadeIn("slow");
 						$("#next").fadeIn("slow");
 						disableCanvas = false;
 					},600);
@@ -1042,13 +1044,25 @@ $(window).on('load', function() {
     	$("#previous").click(function() {
     		clearTimeout(timer);
     		$("#selection").fadeOut("slow");
+    		
+    		if ($("#drag").is(":visible")) {
+					$("#slider").fadeOut("slow");
+					$("#rotate").fadeOut("slow");
+					$("#drag").fadeOut("slow");
+					$("#previous").fadeOut("slow");
+					$("#next").fadeOut("slow");
+					window.setTimeout(function() {
+						$("#load").fadeIn("slow");
+						$("#clickdrag").fadeIn("slow");
+						$("#next").fadeIn("slow");
+						disableCanvas = true;
+					},600);
+					return;
+				}
+    		
     		if(frame==2) {
-				//Going back to upload page, so we fade slider and stop user from moving the image.
-				$("#slider").fadeOut("slow");
-				$("#rotate").fadeOut("slow");
-				disableCanvas = true;
 				resetFrame();
-    			window.setTimeout(frameTwo, 600);
+    			window.setTimeout(frameTwoStepTwo, 600);
     			window.setTimeout(refreshCanvas, 600);
     		} else if(frame==3) {
     			resetFrame();
@@ -1194,13 +1208,33 @@ $(window).on('load', function() {
     	$("#clickdrag").fadeIn("slow");
     }
     
+	function frameTwoStepTwo() {
+		output = "";
+    	textoutput = "";
+    		
+    	//resetFrame();
+    	frame = 1;
+    	//setClickDragMessage("Drag/Click here to load a photo of you supporting the U.S. Army.");
+    	//setClickDragMessage("The U.S. Army Reserve allows individuals to make a difference in the world as they serve their country part-time, pursue their passions and aspirations while also remaining close to home. This meme generator is an easy way for you to share your support of U.S. Army Reserve Soldiers. The first step is to upload a photo of yourself in uniform or showing your support of Soldiers.");
+    	//drop image two
+    	//drop image two
+    	disableCanvas = false;
+    	$("#bottom-margin").css("height", "0");
+    	$("#frametwo").fadeIn("slow");
+    	$("#slider").fadeIn("slow");
+		$("#rotate").fadeIn("slow");
+    	$("#previous").fadeIn("slow");
+    	$("#next").fadeIn("slow");
+    	$("#drag").fadeIn("slow");
+	}
+    
     function frameThree() {
     	//resetFrame();
     	//text
     	frame = 2;
     	//$("#slider").fadeOut(0);
     	createFrameThree();
-    	$("#bottom-margin").css("height", "0.5em");
+    	$("#bottom-margin").css("height", "3em");
     	$("#framethree").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	$("#selection").fadeIn("slow");
@@ -1224,7 +1258,7 @@ $(window).on('load', function() {
     	//resetFrame();
     	selectDisable();
     	//output/download/share
-    	$("#bottom-margin").css("height", "4em");
+    	$("#bottom-margin").css("height", "6.5em");
     	$("#framefour").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	frame = 3;
