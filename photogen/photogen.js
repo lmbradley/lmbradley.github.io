@@ -9,6 +9,7 @@ var saved = [];
 var frame = 0;
 var zoomLevel = [1,1];
 var ready = false;
+var loadingFrame = false;
 var fb_message = "";
 var sharedToFB = false;
 var changed, timer, image, resize;
@@ -927,6 +928,8 @@ $(window).on('load', function() {
 	    	 $(popuplist[i]).fadeOut(0);
 	     }
     	$("#next").click(function() {
+    		if (loadingFrame) return;
+    		loadingFrame = true;
     		if(ready) {
 				//UPDATE: hack for next button to work on the upload page.  We don't change frame (since for whatever reason both upload
 				//and scale dialogs are frame 2) but just update current frame.
@@ -941,6 +944,7 @@ $(window).on('load', function() {
     					$("#previous").fadeIn("slow");
 						$("#next").fadeIn("slow");
 						disableCanvas = false;
+						loadingFrame = false;
 					},600);
 					return;
 				}
@@ -1042,6 +1046,8 @@ $(window).on('load', function() {
     	});
     	
     	$("#previous").click(function() {
+    		if (loadingFrame) return;
+    		loadingFrame = true;
     		clearTimeout(timer);
     		$("#selection").fadeOut("slow");
     		
@@ -1056,6 +1062,7 @@ $(window).on('load', function() {
 						$("#clickdrag").fadeIn("slow");
 						$("#next").fadeIn("slow");
 						disableCanvas = true;
+						loadingFrame = false;
 					},600);
 					return;
 				}
@@ -1085,7 +1092,7 @@ $(window).on('load', function() {
 		$(window).on('resize', function() {
 			onMobile = (window.innerHeight < 540 || window.innerWidth < 540);
 			width = $('#popuplist').width();
-			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height() * 0.75);
+			height = (onMobile ? Math.max(400, window.innerHeight/2) : $('#popuplist').height() * 0.67);
 			var canvas = document.getElementById('upload');
 			canvas.width = width;
 			canvas.height = height;
@@ -1206,6 +1213,7 @@ $(window).on('load', function() {
     		$("#next").fadeOut("slow");
     	}
     	$("#clickdrag").fadeIn("slow");
+    	loadingFrame = false;
     }
     
 	function frameTwoStepTwo() {
@@ -1226,6 +1234,7 @@ $(window).on('load', function() {
     	$("#previous").fadeIn("slow");
     	$("#next").fadeIn("slow");
     	$("#drag").fadeIn("slow");
+    	loadingFrame = false;
 	}
     
     function frameThree() {
@@ -1234,7 +1243,7 @@ $(window).on('load', function() {
     	frame = 2;
     	//$("#slider").fadeOut(0);
     	createFrameThree();
-    	$("#bottom-margin").css("height", "3em");
+    	$("#bottom-margin").css("height", "1.5em");
     	$("#framethree").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	$("#selection").fadeIn("slow");
@@ -1250,7 +1259,7 @@ $(window).on('load', function() {
     	selectEnable();
     	ready = false;
     	onselectChange();
-    	
+    	loadingFrame = false;
     	
     }
     
@@ -1258,7 +1267,7 @@ $(window).on('load', function() {
     	//resetFrame();
     	selectDisable();
     	//output/download/share
-    	$("#bottom-margin").css("height", "6.5em");
+    	$("#bottom-margin").css("height", "1.5em");
     	$("#framefour").fadeIn("slow");
     	$("#previous").fadeIn("slow");
     	frame = 3;
@@ -1271,6 +1280,7 @@ $(window).on('load', function() {
     	//timer = setTimeout(function() {
     	//	$(".util").fadeOut("slow");
     	//}, 5000);
+    	loadingFrame = false;
     }
     
     checkSupport();
